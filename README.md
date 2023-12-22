@@ -28,6 +28,7 @@ git clone https://github.com/elvisbrevi/redis_node_demo/
 ### Configurar y Ejecutar el Microservicio de Hearthstone
 
 ```bash
+cd microservices
 cd hearthstone-service
 npm install
 node hearthstone-service.js
@@ -36,17 +37,30 @@ node hearthstone-service.js
 ### Configurar y Ejecutar el Microservicio de Redis
 
 ```bash
+cd microservices
 cd redis-service
 npm install
 node redis-service.js
 ```
 
-### Configurar y Ejecutar el Frontend React
+### Configurar y Ejecutar el MicroFrontend del componente Card (remote)
 
 ```bash
-cd micro-frontend
+cd microfrontends
+cd card-component
 npm install
-npm run dev
+npm run build
+npm run serve
+```
+
+### Configurar y Ejecutar el MicroFrontend del App Card (host)
+
+```bash
+cd microfrontends
+cd card-app
+npm install
+npm run build
+npm run serve
 ```
 
 ## Uso
