@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Card from 'cardComponent/Card';
 import axios from 'axios';
 
 function App() {
@@ -53,15 +54,9 @@ function App() {
       <button onClick={fetchCardData} disabled={loading}>
         {loading ? 'Cargando...' : 'Buscar Carta'}
       </button>
-      
-      {cardData && (
-        <div>
-          <h3>{cardData.name}</h3>
-          {cardData.artist && <p>Artista: {cardData.artist}</p>}
-          <p>Datos obtenidos desde: {dataOrigin}</p>
-          {cardData.img && <img src={cardData.img} alt={cardData.name} />}
-        </div>
-      )}
+
+      <p>Datos obtenidos desde: {dataOrigin}</p>
+      <Card cardData={cardData} />
     </div>
   );
 }
