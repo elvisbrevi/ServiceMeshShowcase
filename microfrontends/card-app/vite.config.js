@@ -13,6 +13,11 @@ export default defineConfig({
       shared: ['react','react-dom']
     })
   ],
+  preview: {
+    host: 'localhost',
+    port: 5001,
+    strictPort: true,
+  },
   build: {
     modulePreload: false,
     target: 'esnext',

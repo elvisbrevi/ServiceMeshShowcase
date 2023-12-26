@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  hearthstone-service:
+    build: ./microservices/hearthstone-service
+    ports:
+      - "3001:3001"
+    depends_on:
+      - redis
+
+  redis-service:
+    build: ./microservices/redis-service
+    ports:
+      - "3002:3002"
+    depends_on:
+      - redis
+
+  redis:
+    image: redis/redis-stack:latest
+    ports:
+      - "10001:6379"
+      - "13333:8001"
+    volumes:
+      - /local-data/:/data
+
+  card-component:
+    build: ./microfrontends/card-component
+    ports:
+      - "5001:5001"
+
+  card-app:
+    build: ./microfrontends/card-app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - card-component
+

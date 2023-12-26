@@ -5,7 +5,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const redisClient = createClient({ url: 'redis://127.0.0.1:10001' });
+const redisClient = createClient({ url: 'redis://redis:6379' });
 redisClient.connect();
 
 app.post('/cache', async (req, res) => {

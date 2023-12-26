@@ -14,6 +14,14 @@ export default defineConfig({
       shared: ['react','react-dom']
     })
   ],
+  preview: {
+    host: 'localhost',
+    port: 5000,
+    strictPort: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*"
+    }
+  },
   build: {
     modulePreload: false,
     target: 'esnext',
