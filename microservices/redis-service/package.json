@@ -2,7 +2,7 @@
   "name": "redis-service",
   "version": "1.0.0",
   "description": "",
-  "main": "redis-service.js",
+  "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
