@@ -26,12 +26,12 @@ services:
   card-component:
     build: ./microfrontends/card-component
     ports:
-      - "5001:5001"
+      - "5001:80"
 
   card-app:
     build: ./microfrontends/card-app
     ports:
-      - "5000:5000"
+      - "5000:80"
     depends_on:
       - card-component
 
