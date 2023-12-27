@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import "./Card.css";
 
 // eslint-disable-next-line react/prop-types
 function Card({ name }) {
@@ -11,47 +12,48 @@ function Card({ name }) {
       if (!name) return;
 
       try {
-        let response = await axios.get(`http://localhost:3002/cache/card:${name}`);
+        let response = await axios.get(
+          `http://localhost:3002/cache/card:${name}`
+        );
         let data = response.data;
 
         if (!data || Object.keys(data).length === 0) {
           response = await axios.get(`http://localhost:3001/card/${name}`);
           data = response.data[0];
 
-          await axios.post('http://localhost:3002/cache', {
+          await axios.post("http://localhost:3002/cache", {
             cacheKey: `card:${name}`,
             cardInfo: {
               name: data.name,
               artist: data.artist,
-              img: data.img
-            }
+              img: data.img,
+            },
           });
 
-          setOrigin('API de Hearthstone');
+          setOrigin("API de Hearthstone");
         } else {
-          setOrigin('Caché de Redis');
+          setOrigin("Caché de Redis");
         }
 
         setCardData(data);
-        
       } catch (error) {
         console.error("Error al obtener datos de la carta", error);
       }
     };
 
     fetchCardData();
-  }, [name]); 
+  }, [name]);
 
   if (!cardData) {
-    return null; 
+    return null;
   }
 
   return (
-    <div>
-      <p>Origen de los datos: {origin}</p>
-      <h3>{cardData.name}</h3>
-      {cardData.artist && <p>Artista: {cardData.artist}</p>}
-      {cardData.img && <img src={cardData.img} alt={cardData.name} />}
+    <div className="cardContainer">
+      <p>Origin: {origin}</p>
+      <p>Name: {cardData.name}</p>
+      <p>Artist: {cardData.artist}</p>
+      <img src={cardData.img} alt={cardData.name} />
     </div>
   );
 }
