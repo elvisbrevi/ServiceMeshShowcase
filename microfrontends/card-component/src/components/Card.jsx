@@ -18,14 +18,19 @@ function Card({ name }) {
         let data = response.data;
 
         if (!data || Object.keys(data).length === 0) {
-          response = await axios.get(`http://localhost:3001/card/${name}`);
-          data = response.data[0];
+          response = await axios.get(
+            `http://localhost:3001/pokemon/card/${name}`
+          );
+
+          data = {
+            name: response.data.name,
+            img: response.data.images.small,
+          };
 
           await axios.post("http://localhost:3002/cache", {
             cacheKey: `card:${name}`,
             cardInfo: {
               name: data.name,
-              artist: data.artist,
               img: data.img,
             },
           });
@@ -52,7 +57,6 @@ function Card({ name }) {
     <div className="cardContainer">
       <p>Origin: {origin}</p>
       <p>Name: {cardData.name}</p>
-      <p>Artist: {cardData.artist}</p>
       <img src={cardData.img} alt={cardData.name} />
     </div>
   );

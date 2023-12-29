@@ -1,7 +1,6 @@
 const axios = require("axios");
 
 const getCardByName = async (req, res, next) => {
-  console.log(``);
   try {
     const response = await axios.request({
       method: "GET",
