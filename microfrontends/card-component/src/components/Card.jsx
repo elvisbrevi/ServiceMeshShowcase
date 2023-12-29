@@ -30,7 +30,7 @@ function Card({ name }) {
             },
           });
 
-          setOrigin("API de Hearthstone");
+          setOrigin("API de Pokemon");
         } else {
           setOrigin("Caché de Redis");
         }

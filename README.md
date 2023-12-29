@@ -1,14 +1,14 @@
 
-# Hearthstone Card Info App
+# Pokemon Card Info App
 
-Este proyecto es una aplicación de React que muestra información sobre cartas de Hearthstone. Utiliza microservicios para obtener datos de una API externa y almacenarlos en una caché Redis para un acceso más rápido.
+Este proyecto es una aplicación de React que muestra información sobre cartas de Pokemon. Utiliza microservicios para obtener datos de una API externa y almacenarlos en una caché Redis para un acceso más rápido.
 
 ## Arquitectura
 
 El sistema consta de tres componentes principales:
 
-1. **Microfrontend React**: Una interfaz de usuario para buscar y mostrar información sobre cartas de Hearthstone, basada en una arquitectura de microfrontends.
-2. **Microservicio de Hearthstone**: Un servicio backend que consulta la API de Hearthstone para obtener datos de las cartas.
+1. **Microfrontend React**: Una interfaz de usuario para buscar y mostrar información sobre cartas de Pokemon, basada en una arquitectura de microfrontends.
+2. **Microservicio de Pokemon**: Un servicio backend que consulta la API de Pokemon TCG para obtener datos de las cartas.
 3. **Microservicio de Redis**: Un servicio backend que gestiona el almacenamiento en caché de los datos de las cartas.
 
 ## Requisitos
@@ -36,13 +36,13 @@ docker-compose up
 ```
 
 ## Levanta los microservicios y microfrontends individualmente de forma local
-### Configurar y Ejecutar el Microservicio de Hearthstone
+### Configurar y Ejecutar el Microservicio de Pokemon
 
 ```bash
 cd microservices
-cd hearthstone-service
+cd pokemon-service
 npm install
-node hearthstone-service.js
+node pokemon-service.js
 ```
 
 ### Configurar y Ejecutar el Microservicio de Redis
@@ -76,7 +76,7 @@ npm run serve
 
 ## Uso
 
-Abre tu navegador y ve a `http://localhost:5000/`. Ingresa el nombre de una carta de Hearthstone para buscar su información. La aplicación primero intentará obtener los datos de Redis y, si no están disponibles, los obtendrá de la API de Hearthstone y los almacenará en Redis durante 20 segundos.
+Abre tu navegador y ve a `http://localhost:5000/`. Ingresa el nombre de una carta de Pokemon para buscar su información. La aplicación primero intentará obtener los datos de Redis y, si no están disponibles, los obtendrá de la API de Pokemon TCG y los almacenará en Redis durante 20 segundos.
 
 ## Contribuciones
 

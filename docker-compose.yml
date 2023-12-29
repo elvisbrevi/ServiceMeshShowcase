@@ -1,8 +1,8 @@
 version: '3.8'
 
 services:
-  hearthstone-service:
-    build: ./microservices/hearthstone-service
+  pokemon-service:
+    build: ./microservices/pokemon-service
     ports:
       - "3001:3001"
     depends_on:
