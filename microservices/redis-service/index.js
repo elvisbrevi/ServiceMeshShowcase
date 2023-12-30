@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const { createClient } = require("redis");
 const cors = require("cors");
@@ -5,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const redisClient = createClient({ url: "redis://redis:6379" });
+const redisClient = createClient({ url: process.env.REDIS_URL });
 redisClient.connect();
 
 app.post("/cache", async (req, res) => {
