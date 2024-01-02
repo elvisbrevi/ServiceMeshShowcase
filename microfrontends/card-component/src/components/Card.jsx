@@ -13,7 +13,7 @@ function Card({ name }) {
 
       try {
         let response = await axios.get(
-          `http://localhost:3002/cache/card:${name}`
+          `http://localhost:3002/redis/cache/card:${name}`
         );
         let data = response.data;
 
@@ -27,7 +27,7 @@ function Card({ name }) {
             img: response.data.images.small,
           };
 
-          await axios.post("http://localhost:3002/cache", {
+          await axios.post("http://localhost:3002/redis/cache", {
             cacheKey: `card:${name}`,
             cardInfo: {
               name: data.name,
