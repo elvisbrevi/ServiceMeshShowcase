@@ -8,7 +8,7 @@ Este proyecto es una aplicación de React que muestra información sobre cartas 
 El sistema consta de tres componentes principales:
 
 1. **Microfrontend React**: Una interfaz de usuario para buscar y mostrar información sobre cartas de Pokemon, basada en una arquitectura de microfrontends.
-2. **Microservicio de Pokemon**: Un servicio backend que consulta la API de Pokemon TCG para obtener datos de las cartas.
+2. **Microservicio de Pokemon**: Un servicio backend que consulta la API de Pokemon para obtener datos de las cartas.
 3. **Microservicio de Redis**: Un servicio backend que gestiona el almacenamiento en caché de los datos de las cartas.
 
 ## Requisitos
@@ -40,9 +40,9 @@ docker-compose up
 
 ```bash
 cd microservices
-cd pokemon-service
+cd Pokemon-service
 npm install
-node pokemon-service.js
+node Pokemon-service.js
 ```
 
 ### Configurar y Ejecutar el Microservicio de Redis
@@ -76,7 +76,7 @@ npm run serve
 
 ## Uso
 
-Abre tu navegador y ve a `http://localhost:5000/`. Ingresa el nombre de una carta de Pokemon para buscar su información. La aplicación primero intentará obtener los datos de Redis y, si no están disponibles, los obtendrá de la API de Pokemon TCG y los almacenará en Redis durante 20 segundos.
+Abre tu navegador y ve a `http://localhost:5000/`. Ingresa el nombre de una carta de Pokemon para buscar su información. La aplicación primero intentará obtener los datos de Redis y, si no están disponibles, los obtendrá de la API de Pokemon y los almacenará en Redis durante 20 segundos.
 
 ## Contribuciones
 
