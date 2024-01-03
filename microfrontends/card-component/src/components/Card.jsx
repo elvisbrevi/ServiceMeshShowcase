@@ -13,13 +13,13 @@ function Card({ name }) {
 
       try {
         let response = await axios.get(
-          `http://localhost:3002/redis/cache/card:${name}`
+          `${import.meta.env.VITE_REDIS_ENDPOINT}/cache/card:${name}`
         );
         let data = response.data;
 
         if (!data || Object.keys(data).length === 0) {
           response = await axios.get(
-            `http://localhost:3001/pokemon/card/${name}`
+            `${import.meta.env.VITE_POKEMON_ENDPOINT}/${name}`
           );
 
           data = {
@@ -27,7 +27,7 @@ function Card({ name }) {
             img: response.data.images.small,
           };
 
-          await axios.post("http://localhost:3002/redis/cache", {
+          await axios.post(`${import.meta.env.VITE_REDIS_ENDPOINT}/cache`, {
             cacheKey: `card:${name}`,
             cardInfo: {
               name: data.name,
