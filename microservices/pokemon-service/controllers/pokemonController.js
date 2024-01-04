@@ -1,4 +1,5 @@
 const axios = require("axios");
+const rabbitMQ = require("../rabbitMQ/rabbitmqProducer");
 
 const getCardByName = async (req, res, next) => {
   try {
@@ -9,6 +10,8 @@ const getCardByName = async (req, res, next) => {
         "X-Api-Key": process.env.POKEMON_API_KEY,
       },
     });
+
+    rabbitMQ.sendRabbitmqMessage("pokemon", response.data.data[0]);
 
     res.json(response.data.data[0]);
   } catch (error) {

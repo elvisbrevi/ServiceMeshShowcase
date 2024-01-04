@@ -1,20 +1,6 @@
 version: '3.8'
 
 services:
-  pokemon-service:
-    build: ./microservices/pokemon-service
-    ports:
-      - "3001:3001"
-    depends_on:
-      - redis
-
-  redis-service:
-    build: ./microservices/redis-service
-    ports:
-      - "3002:3002"
-    depends_on:
-      - redis
-
   redis:
     image: redis/redis-stack:latest
     ports:
@@ -22,6 +8,35 @@ services:
       - "13333:8001"
     volumes:
       - /local-data/:/data
+
+  rabbitmq:
+    image: rabbitmq:3.12-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: "/opt/rabbitmq/sbin/rabbitmqctl status"
+      interval: 2s
+      timeout: 30s
+      retries: 15
+
+  pokemon-service:
+    build: ./microservices/pokemon-service
+    ports:
+      - "3001:3001"
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+
+  redis-service:
+    build: ./microservices/redis-service
+    ports:
+      - "3002:3002"
+    depends_on:
+      pokemon-service:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
 
   card-component:
     build: ./microfrontends/card-component
@@ -34,4 +49,3 @@ services:
       - "5000:80"
     depends_on:
       - card-component
-
