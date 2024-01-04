@@ -11,9 +11,14 @@ const getCardByName = async (req, res, next) => {
       },
     });
 
-    rabbitMQ.sendRabbitmqMessage("pokemon", response.data.data[0]);
+    data = {
+      name: response.data.data[0].name,
+      img: response.data.data[0].images.small,
+    };
 
-    res.json(response.data.data[0]);
+    rabbitMQ.sendMessage("pokemon", JSON.stringify(data));
+
+    res.json(data);
   } catch (error) {
     next(error);
   }

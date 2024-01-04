@@ -5,8 +5,7 @@ redisClient.connect();
 const setCache = async (req, res, next) => {
   try {
     const { cacheKey, cardInfo } = req.body;
-    await redisClient.hSet(cacheKey, cardInfo);
-    await redisClient.expire(cacheKey, 20);
+    await setCacheDirectly(cacheKey, cardInfo);
     res.send("Cache actualizado");
   } catch (err) {
     next(err);
@@ -22,7 +21,18 @@ const getCache = async (req, res, next) => {
   }
 };
 
+const setCacheDirectly = async (cacheKey, cardInfo) => {
+  try {
+    await redisClient.hSet(cacheKey.toLowerCase(), cardInfo);
+    await redisClient.expire(cacheKey, 30);
+    console.log("Cache actualizado Directamente");
+  } catch (err) {
+    console.error("Error al actualizar el cache:", err);
+  }
+};
+
 module.exports = {
   setCache,
   getCache,
+  setCacheDirectly,
 };

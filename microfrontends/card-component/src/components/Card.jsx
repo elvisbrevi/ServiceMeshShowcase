@@ -22,18 +22,7 @@ function Card({ name }) {
             `${import.meta.env.VITE_POKEMON_ENDPOINT}/${name}`
           );
 
-          data = {
-            name: response.data.name,
-            img: response.data.images.small,
-          };
-
-          await axios.post(`${import.meta.env.VITE_REDIS_ENDPOINT}/cache`, {
-            cacheKey: `card:${name}`,
-            cardInfo: {
-              name: data.name,
-              img: data.img,
-            },
-          });
+          data = response.data;
 
           setOrigin("API de Pokemon");
         } else {

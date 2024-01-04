@@ -1,6 +1,6 @@
 const amqp = require("amqplib/callback_api");
 
-function sendRabbitmqMessage(queue, msg) {
+function sendMessage(queue, msg) {
   amqp.connect("amqp://rabbitmq:5672", function (error0, connection) {
     if (error0) {
       throw error0;
@@ -14,10 +14,10 @@ function sendRabbitmqMessage(queue, msg) {
         durable: false,
       });
 
-      channel.sendToQueue(queue, Buffer.from(JSON.stringify(msg)));
+      channel.sendToQueue(queue, Buffer.from(msg));
       console.log(" [x] Sent %s", msg);
     });
   });
 }
 
-module.exports = { sendRabbitmqMessage };
+module.exports = { sendMessage };
