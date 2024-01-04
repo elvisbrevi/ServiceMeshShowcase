@@ -1,87 +1,48 @@
 
 # Pokemon Card Info App
 
-Este proyecto es una aplicación de React que muestra información sobre cartas de Pokemon. Utiliza microservicios para obtener datos de una API externa y almacenarlos en una caché Redis para un acceso más rápido.
+This React application displays information about Pokemon cards. It employs microservices to fetch data from an external Pokemon API and uses RabbitMQ for messaging between services. Data fetched for the first time is sent through RabbitMQ to the Redis service, which then caches it in Redis for faster subsequent access.
 
-## Arquitectura
+## Architecture
 
-El sistema consta de tres componentes principales:
+The system consists of three main components:
 
-1. **Microfrontend React**: Una interfaz de usuario para buscar y mostrar información sobre cartas de Pokemon, basada en una arquitectura de microfrontends.
-2. **Microservicio de Pokemon**: Un servicio backend que consulta la API de Pokemon para obtener datos de las cartas.
-3. **Microservicio de Redis**: Un servicio backend que gestiona el almacenamiento en caché de los datos de las cartas.
+1. **React Microfrontend**: A user interface for searching and displaying Pokemon card information, based on a microfrontend architecture.
+2. **Pokemon Microservice**: Queries the Pokemon API for card data. When data is fetched for the first time, it sends a message to the Redis service via RabbitMQ.
+3. **Redis Microservice**: Manages caching of card data. It receives data from the Pokemon service through RabbitMQ and stores it in Redis cache.
 
-## Requisitos
+## Requirements
 
 - Node.js
 - npm o yarn
 - Docker
 
-## Instalación
+## Installation
 
-Primero, clona el repositorio:
+First, clone the repository:
 
 ```bash
 git clone https://github.com/elvisbrevi/redis_node_demo/
 ```
 
-## Levanta los microservicios y microfrontends con docker compose
-## Crea y ejecuta las imagenes
+## Set up microservices and microfrontends with docker compose
+## Create and run the images
 ```bash
 docker-compose up --build
 ```
-## Solo ejecuta las imagenes
+## Just run the images
 ```bash
 docker-compose up
 ```
 
-## Levanta los microservicios y microfrontends individualmente de forma local
-### Configurar y Ejecutar el Microservicio de Pokemon
+## Usage
 
-```bash
-cd microservices
-cd Pokemon-service
-npm install
-node Pokemon-service.js
-```
+Open your browser and go to http://localhost:5000/. Enter the name of a Pokemon card to search for its information. The application will first try to get the data from Redis and, if not available, will fetch it from the Pokemon API and store it in Redis for 30 seconds.
 
-### Configurar y Ejecutar el Microservicio de Redis
+## Contributions
 
-```bash
-cd microservices
-cd redis-service
-npm install
-node redis-service.js
-```
+Contributions are welcome. Please fork the repository and submit a pull request with your improvements.
 
-### Configurar y Ejecutar el MicroFrontend del componente Card (remote)
+## Licence
 
-```bash
-cd microfrontends
-cd card-component
-npm install
-npm run build
-npm run serve
-```
-
-### Configurar y Ejecutar el MicroFrontend del App Card (host)
-
-```bash
-cd microfrontends
-cd card-app
-npm install
-npm run build
-npm run serve
-```
-
-## Uso
-
-Abre tu navegador y ve a `http://localhost:5000/`. Ingresa el nombre de una carta de Pokemon para buscar su información. La aplicación primero intentará obtener los datos de Redis y, si no están disponibles, los obtendrá de la API de Pokemon y los almacenará en Redis durante 20 segundos.
-
-## Contribuciones
-
-Las contribuciones son bienvenidas. Por favor, haz un fork del repositorio y envía un pull request con tus mejoras.
-
-## Licencia
-
-Este proyecto está bajo la licencia MIT. Ver el archivo `LICENSE` para más detalles.
+This project is under the MIT license. See the LICENSE file for more details.
