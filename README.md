@@ -22,7 +22,7 @@ The system consists of three main components:
 First, clone the repository:
 
 ```bash
-git clone https://github.com/elvisbrevi/redis_node_demo/
+git clone https://github.com/elvisbrevi/ServiceMeshShowcase
 ```
 
 ## Set up microservices and microfrontends with docker compose
