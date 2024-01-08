@@ -12,7 +12,7 @@ const getCardByName = async (req, res, next) => {
     });
 
     data = {
-      name: response.data.data[0].name,
+      name: req.params.name, //response.data.data[0].name,
       img: response.data.data[0].images.small,
     };
 
