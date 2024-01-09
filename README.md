@@ -58,7 +58,7 @@ git clone https://github.com/elvisbrevi/ServiceMeshShowcase
 ```
 
 ## Build Vite Apps
-# In microfrontend/card-component and microfrontend/card-app folders
+### In microfrontend/card-component and microfrontend/card-app folders
 ```bash
 npm run build
 ```
