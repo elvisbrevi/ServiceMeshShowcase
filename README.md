@@ -57,6 +57,12 @@ First, clone the repository:
 git clone https://github.com/elvisbrevi/ServiceMeshShowcase
 ```
 
+## Build Vite Apps
+# In microfrontend/card-component and microfrontend/card-app folders
+```bash
+npm run build
+```
+
 ## Set up microservices and microfrontends with docker compose
 ## Create and run the images
 ```bash
