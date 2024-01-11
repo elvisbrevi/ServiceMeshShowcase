@@ -1,25 +1,23 @@
-# Fase de construcción
-FROM node:14 AS build
+# Base image
+FROM node:14
 
+# Create and set the working directory
 WORKDIR /usr/src/app
 
+# Copy package.json and package-lock.json (or yarn.lock)
 COPY package*.json ./
 
+# Install dependencies
 RUN npm install
 
+# Copy the rest of your application's code
 COPY . .
 
+# Build the application
 RUN npm run build
 
+# Expose the port the app runs on
+EXPOSE 5001
 
-# Fase de Nginx para servir contenido estático
-FROM nginx:alpine
-
-COPY --from=build /usr/src/app/dist /usr/share/nginx/html
-
-# Copiar la configuración de Nginx
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+# Serve the app using a simple Node.js server (e.g., serve package)
+CMD ["npx", "serve", "dist", "-l", "5001"]
