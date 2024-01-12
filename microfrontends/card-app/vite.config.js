@@ -1,22 +1,23 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import federation from '@originjs/vite-plugin-federation'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import federation from "@originjs/vite-plugin-federation";
 
 export default defineConfig({
   plugins: [
     react(),
     federation({
-      name: 'card_app',
+      name: "card_app",
       remotes: {
-        cardComponent: 'http://localhost:5001/assets/remoteEntry.js',
+        cardComponent:
+          "https://card-component-default.apps.flqrjprk.eastus.aroapp.io/assets/remoteEntry.js",
       },
-      shared: ['react','react-dom']
-    })
+      shared: ["react", "react-dom"],
+    }),
   ],
   build: {
     modulePreload: false,
-    target: 'esnext',
+    target: "esnext",
     minify: false,
-    cssCodeSplit: false
-  }
-})
+    cssCodeSplit: false,
+  },
+});

@@ -1,8 +1,8 @@
-import { useState, useRef } from 'react';
-import Card from 'cardComponent/Card'; 
+import { useState, useRef } from "react";
+import Card from "cardComponent/Card";
 
 function App() {
-  const [cardName, setCardName] = useState('');
+  const [cardName, setCardName] = useState("");
   const inputRef = useRef(null);
 
   const handleButtonClick = () => {
@@ -19,7 +19,7 @@ function App() {
         placeholder="Ingrese nombre de la carta"
       />
 
-      <button onClick={handleButtonClick}>Buscar</button>
+      <button onClick={handleButtonClick}>Buscar!</button>
 
       <Card name={cardName} />
     </div>
