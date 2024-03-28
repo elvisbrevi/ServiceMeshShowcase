@@ -1,5 +1,5 @@
 
-# Pokemon Card Info App
+# Service Mesh ShowCase
 
 This React application displays information about Pokemon cards. It employs microservices to fetch data from an external Pokemon API and uses RabbitMQ for messaging between services. Data fetched for the first time is sent through RabbitMQ to the Redis service, which then caches it in Redis for faster subsequent access.
 
