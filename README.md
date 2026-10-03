@@ -63,6 +63,9 @@ git clone https://github.com/elvisbrevi/ServiceMeshShowcase
 npm run build
 ```
 
+## Pokémon TCG API key
+Copy `microservices/pokemon-service/.env.example` to `microservices/pokemon-service/.env` and set `POKEMON_API_KEY` to your own key from https://dev.pokemontcg.io/. The `.env` file is ignored by Git.
+
 ## Set up microservices and microfrontends with docker compose
 ## Create and run the images:
 ```bash
